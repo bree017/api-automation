@@ -1,0 +1,337 @@
+{
+  "addSales": {
+    "salesId": "",
+    "customerId": 20846,
+    "customerName": "广东测试公司",
+    "customersList": [],
+    "needInvoice": 0,
+    "needInsurance": 0,
+    "deliveryInfo": "",
+    "payTypeId": 1,
+    "receivingPlaceId": "",
+    "receivingPlaceName": "用户自提",
+    "receivingPlaceList": [],
+    "goodsFocusPlace": 0
+  },
+  "addSalesDetai":{
+	"stockId": 38,
+	"partsId": 38,
+	"partsCode": "75764-0P020",
+	"partsName": "大灯",
+	"printCarType": "本田",
+	"originPlaceName": "中国",
+	"num": 1,
+	"salesPrice": "54.00",
+	"actualSalesPrice": "54.00",
+	"totalNum": 107,
+	"salesDetailDeliveryId": "",
+	"discountAmount": "",
+	"nailBox": 0,
+	"saleableNum": 0,
+	"salesDetailAddNumVOs": [{
+		"warehouseId": 2,
+		"num": 1,
+		"allowExternalPurchase": true
+	}],
+	"warehouseId": 2,
+	"warehouseName": "广州-门市",
+	"salesId": 28016
+},
+  "submitSales": {
+    "salesId": 20214,
+    "goodsFocusPlace": 0
+  },
+  "financeSaleConfirm": {
+    "outStorageNo": "CK20248",
+    "bizId": 20699,
+    "customerId": 20846,
+    "payTypeId": 1,
+    "invoiceNo": "N"
+  },
+  "prepareGoods": {
+    "salesDetailId": 122914,
+    "warehouseId": 1,
+    "extractGoodsState": 1
+  },
+  "extractGoods": {
+	"warehouseId": 2,
+	"warehouseShelf": "",
+	"extractGoodsState": 1,
+	"partsCode": "",
+	"salesNo": "",
+	"pageDTO": {
+		"pageSize": 30,
+		"pagination": 0
+	}
+},
+  "SalesPack": {
+    "warehouseId": 1,
+    "salesOrderPackageDetailDTOs": [
+      {
+        "salesDetailId": 117940,
+        "num": 1
+      }
+    ]
+  },
+  "RegisterReturnGoods": {
+    "sourceId": 123728,
+    "num": "1",
+    "price": "20.00",
+    "reasonId": 9,
+    "remark": "gytest",
+    "partsId": 38,
+    "warehouseId": 1
+  },
+  "submitReturnGoods": {
+    "customerId": 20846
+  },
+  "allowReturnGoods": {
+    "returnGoodsId": 2277
+  },
+  "addPu":{
+	"businessUser": "",
+	"invoiceNo": "N",
+	"payTypeId": 1,
+	"customerId": 25379,
+	"warehouseId": 2,
+	"remark": ""
+},
+  "addPuDetai": {
+    "stockColumns": [
+      {
+        "title": "库号",
+        "dataIndex": "warehouseName",
+        "width": 60
+      },
+      {
+        "title": "仓位",
+        "dataIndex": "warehouseShelf",
+        "width": 100
+      },
+      {
+        "title": "网点价",
+        "dataIndex": "foreignCurrencyPrice",
+        "decimal": true,
+        "textClass": "number",
+        "width": 90
+      },
+      {
+        "title": "人进价",
+        "dataIndex": "rmbpurchasePrice",
+        "decimal": true,
+        "textClass": "number",
+        "width": 90
+      },
+      {
+        "title": "售价",
+        "dataIndex": "salesPrice",
+        "decimal": true,
+        "textClass": "number",
+        "width": 90
+      },
+      {
+        "title": "库存数",
+        "dataIndex": "num",
+        "textClass": "center",
+        "width": 60
+      },
+      {
+        "title": "配件分类",
+        "dataIndex": "partsBrandName",
+        "width": 90
+      },
+      {
+        "title": "批发价",
+        "dataIndex": "batchSalesPrice",
+        "decimal": true,
+        "textClass": "number",
+        "width": 90
+      },
+      {
+        "title": "零件名",
+        "dataIndex": "partsName",
+        "width": 150
+      }
+    ],
+    "stockVOList": [
+      {
+        "stockId": 38,
+        "partsId": 38,
+        "partsName": "大灯",
+        "partsBrandName": "国外品牌",
+        "foreignCurrencyPrice": 0,
+        "salesPrice": 143,
+        "batchSalesPrice": 108,
+        "floorPrice": 45,
+        "warehouseId": 1,
+        "warehouseName": "库房",
+        "warehouseShelf": "cc001",
+        "num": 21,
+        "rmbpurchasePrice": 124.8,
+        "index": 1
+      },
+      {
+        "stockId": 38,
+        "partsId": 38,
+        "partsName": "大灯",
+        "partsBrandName": "国外品牌",
+        "foreignCurrencyPrice": 0,
+        "salesPrice": 143,
+        "batchSalesPrice": 108,
+        "floorPrice": 45,
+        "warehouseId": 4,
+        "warehouseName": "中心仓",
+        "warehouseShelf": "AS-08",
+        "num": 119,
+        "rmbpurchasePrice": 124.8,
+        "index": 2
+      },
+      {
+        "stockId": 38,
+        "partsId": 38,
+        "partsName": "大灯",
+        "partsBrandName": "国外品牌",
+        "foreignCurrencyPrice": 0,
+        "salesPrice": 143,
+        "batchSalesPrice": 108,
+        "floorPrice": 45,
+        "warehouseId": 3,
+        "warehouseName": "残次",
+        "warehouseShelf": "未定义",
+        "num": 10,
+        "rmbpurchasePrice": 124.8,
+        "index": 3
+      }
+    ],
+    "shelfDisabled": false,
+    "right": 0,
+    "calculateMethod": 1,
+    "rmbpurchasePrice": "124.80",
+    "batchSalesPrice": "108.00",
+    "carType": "本田",
+    "foreignCurrencyPrice": "",
+    "floorPrice": "45.00",
+    "originPlaceName": "中国",
+    "partsBrandName": "国外品牌",
+    "partsCode": "75764-0P020",
+    "partsName": "大灯",
+    "remark": "gytest",
+    "salesPrice": "143.00",
+    "unitName": "条",
+    "num": "3",
+    "warehouseShelf": "cc001",
+    "partsId": 38,
+    "purchaseDetailId": 0,
+    "addWarehouseShelf": "",
+    "canModifyWarehouseShelf": false,
+    "partsCategoryName": "国外品牌",
+    "bookGoodsCategoryName": "东本",
+    "originPartsCode": "1111111",
+    "purchaseId": 11121
+  },
+  "submitPu": {
+    "purchaseId": 11101
+  },
+  "financeConfirmPu": {
+    "inStorageBillNo": "PU11096_0",
+    "inStorageBillId": 2462,
+    "supplierId": 20846,
+    "payType": 2,
+    "invoiceNo": "Y"
+  },
+  "submitPuarriveGoods": {
+    "arriveGoodsId": 127207
+  },
+  "addReserveGoods": {
+    "warehouseId": 1,
+    "reserveGoodsId": "",
+    "customerId": 20846,
+    "customerName": "广东测试公司",
+    "customerList": [],
+    "provideGoodsNo": "111",
+    "arriveDate": "2017-12-19",
+    "arriveTime": "",
+    "needInvoice": 0
+  },
+  "addReserveGoodsDetai": {
+    "partsCode": "75764-0P020",
+    "partsName": "大灯",
+    "carType": "本田",
+    "originPlaceName": "中国",
+    "reserveGoodsDetailId": "",
+    "reserveGoodsNum": "4",
+    "stockNum": 126,
+    "unitPrice": "124.80",
+    "partsId": 38,
+    "reserveGoodsId": 1028
+  },
+  "submitReserveGood": {
+    "reserveGoodsId": 1028
+  },
+  "submitHalfwayDetai": {
+    "halfwayId": 746
+  },
+  "submitHalfway": {
+    "halfwayId": 746
+  },
+  "confirmArriveGoods": [
+    128735
+  ],
+  "submitRsArriveGoodsId": {
+    "arriveGoodsId": 127475
+  },
+  "financeConfirmRS": {
+    "inStorageBillNo": "RG933_1_0",
+    "inStorageBillId": 2526,
+    "supplierId": 20846,
+    "payType": 2,
+    "invoiceNo": "Y"
+  },
+  "addTodoAllocate": {
+    "allocateNum": "2",
+    "remark": "gytest",
+    "partsId": 38,
+    "stockNumId": 38,
+    "fromWarehouseId": 1,
+    "fromWarehouseShelf": "cc001",
+    "toWarehouseId": 3,
+    "toWarehouseShelf": "未定义"
+  },
+  "adddoAllocate": {
+    "partsAllocateIds": [
+      173728
+    ],
+    "expectedArriveTime": "2018-01-04"
+  },
+  "doInStock": {
+    "partsAllocateId": 173728
+  },
+  "countToBeInStock": {
+    "targetWarehouseId": 3,
+    "partsCode": "75764-0P020",
+    "allocateOrderNo": "",
+    "pageDTO": {
+      "pageSize": 30,
+      "pagination": 0
+    }
+  },
+  "applyInStorageReturnGoods": {
+    "inStorageBillDetailId": 34914,
+    "applyNum": "1",
+    "applyPrice": "124.80",
+    "remark": "gytest"
+  },
+  "buildInStorageReturnGoodsBatch": {
+    "supplierId": 20846,
+    "takeDelivery": 0
+  },
+  "auditInStorageReturnGoods": {
+    "returnGoodsId": 2423
+  },
+  "findTownByCountyID":{
+    "queryIndex":8,"countyID":1718
+  },
+  "receInfo":{"addressID":"3141","address":"123","receiverName":"dwb","mobilePhone":"13625489576","telephone":"","defaultAddress":true,"provinceID":19,"provinceName":"广东","cityID":445300,"cityName":"云浮市","countyID":1785,"countyName":"罗定市","townID":445381102,"townName":"分界镇"},
+  "receInfo2":{"addressID":"2995","address":"ss","receiverName":"sss","mobilePhone":"13444342433","telephone":"","provinceID":19,"provinceName":"广东","cityID":440200,"cityName":"韶关市","countyID":1718,"countyName":"新丰县","townID":440233104,"townName":"沙田镇"},
+  "no":{}
+}
