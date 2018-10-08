@@ -3,10 +3,10 @@
 # author:dwb
 # datetime:2018/10/3 15:32
 # software: PyCharm
-from . import globalvar as gol
+from src.util import globalvar as gol
 
-import configparser,itertools,re
-from src import globalvar as gol
+import configparser
+from src.util import globalvar as gol
 
 class ConfigReader():
     def __init__(self, path):
