@@ -333,5 +333,15 @@
   },
   "receInfo":{"addressID":"3141","address":"123","receiverName":"dwb","mobilePhone":"13625489576","telephone":"","defaultAddress":true,"provinceID":19,"provinceName":"广东","cityID":445300,"cityName":"云浮市","countyID":1785,"countyName":"罗定市","townID":445381102,"townName":"分界镇"},
   "receInfo2":{"addressID":"2995","address":"ss","receiverName":"sss","mobilePhone":"13444342433","telephone":"","provinceID":19,"provinceName":"广东","cityID":440200,"cityName":"韶关市","countyID":1718,"countyName":"新丰县","townID":440233104,"townName":"沙田镇"},
-  "no":{}
+  "no":{},
+  "publishInquiry":{
+    "autoAuditFlag":2,"carTypeId":157811,"inquiryCarTypeId":0,"carTypeDTO":{"carTypeId":157811,"brandId":1,"brandName":"宝马","carSystemId":482,"carSystem":"3系","subBrandName":"华晨宝马"},"inquiryDetailDTOs":[{"autoAuditFlag":-1,"factoryTypes":[0,1,2],"factoryTypesIndex":[0,1,2],"needNum":1,"partCode":"178930T030","partsName":"178930T030","quoteDetailDTOs":[],"remark":"","pictures":[],"priceOf4s":0,"inquiryDetailEPCPicDTOs":[],"inquiryDetailPhysicalPicDTOs":[],"inquiryDetailId":0,"partsInfoVisible":false,"quoteVisible":true,"limitNum":5,"repeatFlag":false,"secQuoting":false,"trackFlagsDTO":{"epcFlag":0}}],"invoiceType":2,"provinceId":19,"vinCode":"SA00997","contacts":"七杀","phone":"15651010003","inquiryId":0,"insuranceWriteParam":{"insuranceNo":"autotest","clientOrgId":1003246,"clientOrgName":"TEST-庐山","townId":445381102,"countyId":1785,"cityId":445300,"provinceId":19}
+  },
+  "zpblogin":{"account":15651010003,"password":"c123456"},
+  "add2cart":{
+    "invoiceType":2,"vinCode":"L199396","carTypeId":161754,"bizId":4142318,"bizType":2,"remark":"国内品牌hn2","factoryType":1,"quoteDetailId":155157694,"inquiryDetailId":10974905
+  },
+  "insurance_submit_order":{
+    "pushOrder":false,"inquiryId":4141594,"agentOrgId":1003471,"carFlag":1,"cooperativeClient":true,"insuranceNo":"88","invoiceType":2,"plateNumber":"77","clientOrgId":1003246,"receiverAddressId":3162,"orderDTO":{"memo":"","receiveAddressDTO":{"address":"广东云浮市罗定市分界镇默认地址勿删1","name":"默认地址勿删1","provinceId":19,"cityId":445300,"countyId":1785,"townId":445381102,"mobile":"13625645566","tel":null},"orderTranslineDTOList":[{"warehouseId":6,"warehouseName":"广州","transWarehouseId":6,"pickTypeList":[2],"pickType":2,"translineId":9999,"subscribeArriveTime":null,"spotArriveTime":1537940400000,"subscribeArrivalTimeStr":null,"spotArrivalTimeStr":"【现货】预计9月26日13:40前送达","subscribeArriveTimeNew":null,"spotArriveTimeNew":1537940400000,"freightAmount":0,"needAllocate":0,"orderTimeCostDTO":null}],"creditSharePayType":0},"cartIds":[3967911]
+  }
 }

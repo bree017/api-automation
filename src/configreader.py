@@ -39,12 +39,12 @@ class ConfigReader():
         res = {}
         for s in self.dict:
             if s.find('DB-') != -1:
-                res[s[3:]] = self.dict[s]
-        gol.set_value('DB',res)
+                res[s[3:].upper()] = self.dict[s]
+        gol.set_value('DB', res)
 
     # 将预置环境变量放到公共变量中
     def gol_transfer(self):
         for s in self.dict['GLOBALS']:
-            gol.set_value(s, self.dict['GLOBALS'][s])
+            gol.set_value(s.lower(), self.dict['GLOBALS'][s])
 
 

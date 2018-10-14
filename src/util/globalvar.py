@@ -3,6 +3,10 @@
 # author:dwb
 # datetime:2018/10/3 15:49
 # software: PyCharm
+# 公共变量，在需要用的模块导入,DB等配置数据用大写，@开头的用小写
+
+# 初始化，在main一开始执行，此后无需执行
+import re
 
 def _init():
     global _vars
@@ -35,11 +39,13 @@ def transfer(obj):
 def str_transfer(obj):
     if isinstance(obj, str) and obj.find('@') != -1:
         for var in _vars:
-            if obj.find(var) != -1 and var.lower() != 'db':
+            if obj.lower().find(var.lower()) != -1 and var.upper() != 'DB':
                 if obj.lower() == var.lower():  # 如果是数字类型的时候不可通过replace方法进行替换
                     obj = _vars[var]
-                else :
-                    obj = obj.replace(var, str(_vars[var]))
+                else:
+                    # obj = obj.replace(var, str(_vars[var.lower()]))   忽略变量大小写
+                    test =str(_vars[var.lower()])
+                    obj = re.sub(var, str(_vars[var.lower()]), obj, flags=re.IGNORECASE)
                 return str_transfer(obj)    # 通过递归的方式貌似简单一点
     return obj
 

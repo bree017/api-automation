@@ -4,9 +4,12 @@
 # datetime:2018/9/21 17:31
 # software: PyCharm
 
-import re, json, datetime, requests
-from src.util.operation_case import CaseReader
-from src.util import globalvar as gol
+import re, json, datetime, requests, time
+from jsonpath_rw import parse
+from .util.operation_case import CaseReader
+from .util.operation_json import JsonReader
+from .util.operation_db import OperationMysql as DbReader
+from .util import globalvar as gol
 
 
 class TestCase():
@@ -17,7 +20,7 @@ class TestCase():
         self.platform = ('platform' in data) and data['platform'] or 0
         self.url = data['url']
         self.method = data['method']
-        self.header = ('header' in data) and data['header'] or '{}'
+        self.header = ('header' in data and data['header'] != '') and data['header'] or '{"Content-Type":"application/json"}'
         self.cookie = ('cookie' in data) and data['cookie'] or '{}'
         self.param = ('param' in data) and data['param'] or '{}'
         self.body = ('body' in data) and data['body'] or '{}'
@@ -30,7 +33,7 @@ class TestCase():
         self.end_time = ('end_time' in data) and data['end_time'] or ''
         self.remark = ('remark' in data) and data['remark'] or ''
         self.jdatapath = ('jdatapath' in data) and data['jdatapath'] or ''
-
+        self.jreader = JsonReader()
         self.convert()
 
     # 从excel中读取的testcase数据格式转换
@@ -51,25 +54,55 @@ class TestCase():
             self.issuccess = -1
             self.result = '数据转换过程错误：%s' % e
 
-    # 变量替换,需要做成从json文件中获取json模板的形式（operation_json）
+    # 变量替换
     def transfer(self):
-        gol.transfer(self.param)
-        gol.transfer(self.body)
-        gol.transfer(self.header)
-        gol.transfer(self.cookie)
+
+
+        # 变量替换
+        self.url = gol.transfer(self.url)
+        self.param = gol.transfer(self.param)
+        self.body = gol.transfer(self.body)
+        self.header = gol.transfer(self.header)
+        self.cookie = gol.transfer(self.cookie)
+
+        # 从json文件中获取json模板并替换参数
+        self.param = self.jreader.get_json(self.jdatapath, self.param)
+        self.body = self.jreader.get_json(self.jdatapath, self.body)
 
 
     # 检验请求结果,未完成
     def resultcheck(self):
-        pass
+        if 200 != self.response.status_code:
+            raise Exception('响应异常：状态码——%s' % self.response.status_code)
+        else:
+            self.issuccess = 1
+            self.result = '响应数据符合预期'
+        # self.jreader.json_check(self.response)
 
-    # 响应参数提取,未完成
-    def res_transfer(self):
-        pass
-
-    # sql参数提取,未完成
+    # 响应数据、sql参数提取,未完成
     def extract(self):
-        pass
+        dbreader = DbReader()
+        for extr in self.extraction:
+            if 'sleep' == extr.lower():     # 设置等候时间
+                test=int(self.extraction[extr])
+                time.sleep(int(self.extraction[extr]))
+            elif isinstance(self.extraction[extr], dict):  # sql提取
+                dbkey = list(self.extraction[extr].keys())[0]
+                sql = gol.transfer(self.extraction[extr][dbkey])
+                value = dbreader.getvalue(dbkey, sql)
+                gol.set_value(extr.lower(), value)
+            else:   # 响应提取
+                jsonpath_expr = parse(self.extraction[extr])
+                try:
+                    resopnse = json.loads(self.response.text)
+                    reslist = jsonpath_expr.find(resopnse)
+                    value = [i.value for i in reslist][0]
+                    gol.set_value(extr.lower(), value)
+                except Exception as e:
+                    raise Exception('从响应中提取参数异常%s' % e)
+
+
+
 
 class TestSuite():
     def __init__(self, suitname, filepath ,jdatapath , case=None, **data):
@@ -89,8 +122,8 @@ class TestSuite():
         sheet = []
         for case in caselist:
             pre = re.split('[0-9]', case)[0].lower()
-            if pre not in sheet : sheet.append(pre)
-
+            if pre not in sheet:
+                sheet.append(pre)
         casereader = CaseReader()
         casemap = {}
         for i in sheet:
@@ -115,26 +148,32 @@ class TestSuite():
         self.start_time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         s = requests.session()
         for case in self.caselist:
-            # 参数替换
-            case.transfer()
+            try:
+                if case.isactive == 1:
+                    # 参数替换
+                    case.transfer()
 
-            # 发送请求,由于用session.能够保持会话，所以发送请求放在testsuite中执行
-            if 'POST' == case.method.upper():
-                case.response = s.post(case.url, params=case.param, data=case.body, headers=case.header, cookies=case.cookie)
-            elif 'GET' == case.method.upper():
-                case.response = s.get(case.url, params=case.param, data=case.body, headers=case.header, cookies=case.cookie)
-            else:
+                    # 发送请求,由于用session.能够保持会话，所以发送请求放在testsuite中执行
+                    if 'POST' == case.method.upper():
+                        if 'Content-Type' in case.header and case.header['Content-Type'] != 'application/json':
+                            case.response = s.post(case.url, params=case.param, data=case.body, headers=case.header, cookies=case.cookie)
+                        else:
+                            case.response = s.post(case.url, params=case.param, data=json.dumps(case.body), headers=case.header, cookies=case.cookie)
+                    elif 'GET' == case.method.upper():
+                        case.response = s.get(case.url, params=case.param, data=case.body, headers=case.header, cookies=case.cookie)
+                    else:
+                        case.issuccess = -1
+                        case.result = '不支持的请求方法：%s' % case.method
+
+                    # 检验请求结果,未完成
+                    case.resultcheck()
+
+                    # 响应、sql参数提取,未完成
+                    case.extract()
+
+            except Exception as e:
                 case.issuccess = -1
-                case.result = '不支持的请求方法：%s' % case.method
-
-            # 检验请求结果,未完成
-            case.resultcheck()
-
-            # 响应参数提取,未完成
-            case.res_transfer()
-
-            # sql参数提取,未完成
-            case.extract()
+                case.result = '执行用例的时候出现异常%s' % e
 
         self.end_time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
@@ -186,3 +225,20 @@ class TestPlan():
             self.result = -1
         else:
             self.result = 2
+
+    # 临时简易版测试报告
+    def getreport(self):
+        with open(self.planname + '.txt', 'w') as f:
+            f.write('测试计划：%s\t执行结果：%s\t开始时间：%s\t结束时间：%s\n' %(self.planname,self.result,self.start_time,self.end_time))
+            for testsuite in self.suitelist:
+                f.write('\t测试套件：%s\t执行结果：%s\t开始时间：%s\t结束时间：%s\n' %(testsuite.suitename,testsuite.result,testsuite.start_time,testsuite.end_time))
+                for testcase in testsuite.caselist:
+                    if testcase.issuccess == 1:
+                        f.write('\t\t测试用例：%s\t执行结果：%s\n' %(testcase.casename,testcase.result))
+                    else:
+                        f.write('\t\t测试用例：%s\t用例id：%s\t执行结果：%s\t开始时间：%s\t结束时间：%s\n' %(testcase.casename,testcase.id,testcase.result,testcase.start_time,testcase.end_time))
+            f.write('公共变量：\n')
+            test=gol._vars
+            f.write(json.dumps(gol._vars))
+
+

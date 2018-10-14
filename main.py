@@ -8,13 +8,14 @@
 from src.configreader import ConfigReader
 from src.util import globalvar as gol
 from src.apitest import TestPlan
-
+import sys
+sys.setrecursionlimit(1000000)
 gol._init()  # 在主模块进行初始化全局变量
 configpath = './config/config.ini'
 config = ConfigReader(configpath)
 testplan = TestPlan(config.dict)
 testplan.runplan()
-pass
+testplan.getreport()
 
 
 

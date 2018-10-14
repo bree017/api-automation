@@ -37,7 +37,7 @@ class CaseReader():
                     'cookie': i[9],
                     'expect': i[10],
                     'extraction': i[11],
-                    'remark': i[11]
+                    'remark': i[12]
                 })
         return res
 

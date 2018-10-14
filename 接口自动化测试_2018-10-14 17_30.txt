@@ -1,0 +1,8 @@
+测试计划：接口自动化测试_2018-10-14 17_30	执行结果：2	开始时间：2018-10-14 17:30:09	结束时间：2018-10-14 17:30:14
+	测试套件：test	执行结果：2	开始时间：2018-10-14 17:30:09	结束时间：2018-10-14 17:30:14
+		测试用例：登录核价师	执行结果：响应数据符合预期
+		测试用例：发布询价	执行结果：响应数据符合预期
+		测试用例：中配保PC加购	执行结果：响应数据符合预期
+		测试用例：提交订单	执行结果：响应数据符合预期
+公共变量：
+{"DB": {"MAIN": {"db_host": "192.168.0.211", "db_port": "3306", "db_user": "ops", "db_pass": "123", "db_name": "main", "db_charset": "utf8"}, "MAIN2": {"db_host": "192.168.0.211", "db_port": "3306", "db_user": "ops", "db_pass": "123", "db_name": "main", "db_charset": "utf8"}}, "@urltest": "http://test2-www.qipeipu.net", "@case2_inquiryid": 4142385, "@case2_quotedetailid": 155158708, "@case2_inquirydetailid": 10974972, "@case3_cartids": 3969674}
