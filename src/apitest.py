@@ -238,7 +238,6 @@ class TestPlan():
                     else:
                         f.write('\t\t测试用例：%s\t用例id：%s\t执行结果：%s\t开始时间：%s\t结束时间：%s\n' %(testcase.casename,testcase.id,testcase.result,testcase.start_time,testcase.end_time))
             f.write('公共变量：\n')
-            test=gol._vars
             f.write(json.dumps(gol._vars))
 
 
